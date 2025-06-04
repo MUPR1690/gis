@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Solid Waste District Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <div id="map" style="height: 600px;"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([28.6, 77.2], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    // Dummy shapefile locations (replace with Azure Blob URLs)
+    var shapefiles = [
+      { name: "Dehradun", url: "https://yourblob.blob.core.windows.net/shapes/dehradun.zip" },
+      { name: "Haridwar", url: "https://yourblob.blob.core.windows.net/shapes/haridwar.zip" }
+    ];
+
+    shapefiles.forEach(shape => {
+      var link = document.createElement('a');
+      link.href = shape.url;
+      link.innerText = `Download ${shape.name}`;
+      link.style.display = "block";
+      document.body.appendChild(link);
+    });
+  </script>
+</body>
+</html>
